@@ -14,15 +14,17 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
-  String restaurant = "";
+  String restaurant = "KFC";
+  String logo = "kfc.png";
 
   RestaurantSelector restaurantSelector = RestaurantSelector();
   // List restaurants =
   void updateIndexValue() {
 
-    Map index = restaurantSelector.generateRandomIndex();
+    Map restaurantData = restaurantSelector.generateRandomIndex();
     setState(() {
-      restaurant = index["restaurant"];
+      restaurant = restaurantData["restaurant"];
+      logo = restaurantData["logo"];
     });
   }
   @override
@@ -47,6 +49,7 @@ class _HomeState extends State<Home> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+
                 Text("Random restaurant selector",
                   style: TextStyle(
                       fontSize: 16.0,
@@ -54,7 +57,9 @@ class _HomeState extends State<Home> {
                       color: Colors.grey[900]
                   ),
                 ),
-                SizedBox(height: 8.0,),
+                SizedBox(height: 16.0,),
+                Image.asset("assets/$logo"),
+                SizedBox(height: 16.0,),
                 Text("$restaurant",
                   style: TextStyle(
                       fontSize: 40.0,
